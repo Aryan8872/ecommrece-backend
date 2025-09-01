@@ -73,6 +73,7 @@ export const updateUserController = async (req, res) => {
             }
             updateData.email = email
         }
+
         if (username) updateData.username = username
         if (phoneNumber) updateData.phoneNumber = phoneNumber
         if (password) {
@@ -99,5 +100,15 @@ export const deleteUser = async (req, res) => {
     }
     catch (e) {
         return res.status(400).json({ message: "server error", users: null })
+    }
+}
+export const getUserById = async (req, res) => {
+    try {
+        const userId = req.params.id
+        const userById = await User.findById(userId)
+        return res.status(200).json({ message: " users found successfully",user:userById })
+    }
+    catch (e) {
+        return res.status(400).json({ message: "server error", user: null })
     }
 }
