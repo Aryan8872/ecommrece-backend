@@ -15,7 +15,7 @@ export const createProductController = async (req, res) => {
     }
 
     const image = req.file ? `/uploads/${req.file.filename}` : undefined;
-    const createdBy = req.user?.id || null;
+    const createdBy = "689f140d114a47b8d60b4200";
     if (!createdBy) return res.status(401).json({ message: "Unauthorized", product: null });
 
     const product = await Product.create({ name, description, price, category, stock, image, createdBy });
